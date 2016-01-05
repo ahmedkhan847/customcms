@@ -1,0 +1,29 @@
+.proimg:
+{
+	height: 20px;
+	width: 20px;
+}
+.footers{
+    position:fixed;
+    height:50px;
+    background-color:#ffefd5;
+    bottom:0px;
+  //  left:0px;
+  //  right:0px;
+    margin-bottom:0px;
+    width: 100%;
+}
+.gont
+{
+    
+    text-align: center !important;
+   
+}
+.back
+{
+  background-color: #ffefd5 !important;
+}
+.home
+{
+  background-color: black !important;
+}
