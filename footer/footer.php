@@ -7,7 +7,7 @@
 
 </div>
 
-       <div class="navbar navbar-inverse navbar-fixed-bottom">
+       <div class="navbar navbar-inverse gont">
     <div class="container">
       <p class="navbar-text gont">All Rights Reserved &copy; <?php echo date("Y")?></p>
       
