@@ -10,7 +10,7 @@ if(empty($_SESSION["username"]))
 }
 
 
-include 'header/header2.php';
+include 'header/header3.php';
 include 'class/articles.php';
 $user = $_SESSION["username"];
 $aid = $_GET['aid'];
@@ -210,4 +210,4 @@ bkLib.onDomLoaded(function() {
 </form>
 
 
-<?php include 'footer/footer2.php';?>
+<?php include 'footer/footer3.php';?>
