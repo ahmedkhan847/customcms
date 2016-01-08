@@ -105,7 +105,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `u_fname`, `u_lname`, `user_name`, `user_psw`, `user_email`, `img`, `user_city`, `user_country`) VALUES
-(1, 'ahmed', 'khan', 'ahmedkhan', '$2y$10$TmSmKqZE5CooLFp3.g2rJeEqq4Hw3PJWMiBUDodgHoyiISsKPMysO', 'ahmedkhan_847@hotmail.com', '26.jpg', 'pakistan', 'karachi');
+(1, 'ahmed', 'khan', 'ahmedkhan', '$2y$10$TmSmKqZE5CooLFp3.g2rJeEqq4Hw3PJWMiBUDodgHoyiISsKPMysO', 'a@mail.com', '26.jpg', 'pakistan', 'karachi');
 
 --
 -- Indexes for dumped tables

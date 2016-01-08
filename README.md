@@ -13,4 +13,10 @@ class/dbconfig.php
 
 After that customcms/index.php
 
+Login with 
+username: ahemedkhan 
+password: ahmedkhan92 
+
+Or register as new user to see the dashboard
+
 to check it out!
