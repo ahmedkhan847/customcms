@@ -31,7 +31,7 @@ $article = [
         'form' => null
     ];
 
-    $result = $crud->getarti($aid);
+    $result = $crud->getarticleforupdate($aid);
 
     while($row = $result->fetch_assoc())
         {

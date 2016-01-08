@@ -36,7 +36,7 @@ public function updatearticle($a_id,$a_content,$a_name,$a_image)
 
 }
 
-public function getarti($aid)
+public function getarticleforupdate($aid)
 {
 	$con = $this->db->OpenCon();
 	
