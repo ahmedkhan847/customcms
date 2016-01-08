@@ -7,7 +7,7 @@ Create a new database on your host
 
 <b>import blogs.sql in it.</b>
 
-Change the database name by going to
+Change the database config file by going to
 
 <b>class/dbconfig.php</b>
 
