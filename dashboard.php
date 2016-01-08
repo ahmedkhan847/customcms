@@ -13,24 +13,20 @@ else
 
 	$users = $_SESSION['username'];
     $user = new User();
-    $result = $user->getUser($users);
-    $userinfo = array('userid' => null, 
-                        'username' => null,
+    $result = $user->getUserarticles($users);
+    $userinfo = array(  'tarticle' => null,
                         'u_fname' => null,
-                        'u_lname' => null,
-                        'u_email' => null,
-                        'u_pass'=>null,
+                        'u_lname' => null,                        
                         'city' => null,
                         'country' => null,
                         'u_img' => null,);
+    
     while ($row = $result->fetch_assoc()) {
 
-            $userinfo['userid'] = $row['user_id'];
-            $userinfo['username'] = $row['user_name'];
-            //$userinfo['u_psw'] = $row['user_psw'];
+          
+            $userinfo['tarticle'] = $row['tarticle'];          
             $userinfo['u_fname'] = $row['u_fname'];
-            $userinfo['u_lname'] = $row['u_lname'];
-            $userinfo['u_email'] = $row['user_email'];
+            $userinfo['u_lname'] = $row['u_lname'];           
             $userinfo['city'] = $row['user_city'];
             $userinfo['country'] = $row['user_country'];
             $userinfo['u_img'] = $row['img'];
@@ -59,7 +55,7 @@ else
         <li class="list-group-item list-group-item-success">Last name: <?php if(isset($userinfo['u_lname'])){echo $userinfo['u_lname'];}  ?></li>
             <li class="list-group-item list-group-item-success">City: <?php if(isset($userinfo['city'])){echo $userinfo['city'];}  ?></li>
         <li class="list-group-item list-group-item-success">Country: <?php if(isset($userinfo['country'])){echo $userinfo['country'];}  ?></li>
-        <li class="list-group-item list-group-item-success">Username: <?php if(isset($userinfo['username'])){echo $userinfo['username'];}  ?></li>
+        <li class="list-group-item list-group-item-success">Total Articles: <?php if(isset($userinfo['tarticle'])){echo $userinfo['tarticle'];}  ?></li>
       
         </ul>
   

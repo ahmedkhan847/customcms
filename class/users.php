@@ -36,7 +36,7 @@ public function createuser($user_fname,$user_lname,$user_name,$user_psw,$user_em
 		return $con->error;
 	}
 
-	return 1;
+	return "true";
 }
 
 function imageupload()
@@ -84,23 +84,50 @@ public function verifyuserpsw($user_name,$user_psw)
 
 }
 
-public function verifyuser($user_name)
+public function verifyuser($user_name,$useremail)
 {
 	$con = $this->db->OpenCon();
 	$user = $con->real_escape_string($user_name);
-	$stmt = "SELECT * FROM users WHERE user_name = $user ";
+	$email = $con->real_escape_string($useremail);
+	$stmt = "SELECT user_name,user_email FROM users WHERE user_name = '$user' OR user_email = '$email'";
 	$sql = "true";
 	$result = $con->query($stmt);
-	
 	if($result->num_rows == 1)
 	{
 		$sql = "false";
+
 	}
+	
 	$this->db->CloseCon();
 
 
 	return $sql;
 }
+
+public function getUserarticles($user_name)
+{
+	$con = $this->db->OpenCon();
+	
+	$user = $con->real_escape_string($user_name);
+	$stmt = "SELECT users.u_fname,users.u_lname,users.img,users.user_city,users.user_country,COUNT(article.article_id) as tarticle FROM users
+INNER JOIN article
+ON article.user_id = users.user_id
+WHERE users.user_name = '$user_name'";
+	$sql = "true";
+	$result = $con->query($stmt);
+	
+	if($result->num_rows == 1)
+	{
+		//echo 'here';
+			$sql = $result;
+	}
+	$this->db->CloseCon();
+
+
+	return $sql;
+
+}
+
 
 public function getUser($user_name)
 {
