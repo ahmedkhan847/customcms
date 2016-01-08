@@ -1,17 +1,17 @@
 # customcms
 It is simple and basic cms can help you create your Advance CMS easily.
 
-Download it as zip.
+<b>Download it as zip.</b>
 
 Create a new database on your host
 
-import blogs.sql in it.
+<b>import blogs.sql in it.</b>
 
 Change the database name by going to
 
-class/dbconfig.php
+<b>class/dbconfig.php</b>
 
-After that customcms/index.php
+After that <b>customcms/index.php</b>
 
 Login with 
 <br>username: ahmedkhan 
