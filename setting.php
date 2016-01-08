@@ -1,5 +1,5 @@
 <?php
-error_reporting(E_ERROR | E_PARSE);
+//error_reporting(E_ERROR | E_PARSE);
 session_start();
 if(empty($_SESSION["username"]))
 {
@@ -112,33 +112,32 @@ include 'header/header3.php';
                     $result = $user->updateuser($userinfo['u_fname'], $userinfo['u_lname'], $userinfo['u_pass'], $userinfo['u_img'], $userinfo['city'], $userinfo['country'], $userinfo['userid']);
                     if($result == "true")
                     {
+                        move_uploaded_file($_FILES["u_img"]["tmp_name"], $target_dir.$userinfo['u_img']);
                         $errors['form'] = "Settings Change Successfully";
                     }
                     else
                     {
-                        $errors['form'] = "Error";
+                        $errors['form'] = $result;
                     }
                     
                     
                 }
                 else
                 {
-                    $user->updateuser($userinfo['u_fname'], $userinfo['u_lname'], $userinfo['u_pass'], $userinfo['u_img'], $userinfo['city'], $userinfo['country'], $userinfo['userid']);
+                   $result = $user->updateuser($userinfo['u_fname'], $userinfo['u_lname'], $userinfo['u_pass'], $userinfo['u_img'], $userinfo['city'], $userinfo['country'], $userinfo['userid']);
                     
                     if($result == "true")
                     {
-                        move_uploaded_file($_FILES["u_img"]["tmp_name"], $target_dir.$imgname);
+                        
                         $errors['form'] = "Settings Change Successfully";
                     }
                     else
                     {
-                        $errors['form'] = "Error";
+                        $errors['form'] = $result;
+                       
                     }
                 }
                     
-            
-
-
           } 
 
 
@@ -155,7 +154,7 @@ include 'header/header3.php';
       <div class="text-center">
         <img src="userimages/<?php echo $userinfo['u_img']; ?>" class="img-circle img-responsive" alt="avatar">
         <input type="file" name='u_img' class="text-center center-block well well-sm">
-        <p class="text-danger"><?php echo $errors['user_img']?></p>
+        <p class="text-danger"><?php echo $errors['user_img'];?></p>
       </div>
     </div>
     <!-- edit form column -->
@@ -203,7 +202,7 @@ include 'header/header3.php';
           <label class="col-md-3 control-label">Password:</label>
           <div class="col-md-8">
             <input class="form-control" name='psw' value="<?php if(isset($userinfo['u_psw'])){echo $userinfo['u_psw'];}  ?>" type="password">
-            <p class="text-danger"><?php echo $errors['user_psw']?></p>
+            <p class="text-danger"><?php echo $errors['user_psw'];?></p>
           </div>
         </div>
         <div class="form-group">
@@ -218,6 +217,7 @@ include 'header/header3.php';
             <input class="btn btn-primary" value="Save Changes" type="submit">
             <span></span>
             <input class="btn btn-default" value="Cancel" type="reset">
+            <span class="text-success"><?php echo $errors['form']; ?></span>
           </div>
         </div>
       
