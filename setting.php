@@ -1,4 +1,5 @@
-<?php 
+<?php
+error_reporting(E_ERROR | E_PARSE);
 session_start();
 if(empty($_SESSION["username"]))
 {
@@ -8,7 +9,7 @@ if(empty($_SESSION["username"]))
 }
 
 include 'class/users.php';
-include 'header/header3.php';;
+include 'header/header3.php';
 
 	$users = $_SESSION['username'];
     $user = new User();
@@ -51,9 +52,9 @@ include 'header/header3.php';;
 
     if(!empty($_POST))
     { 
-          $target_dir = "images/";
-          $target_file = $target_dir . basename($_FILES["u_img"]["name"]);
-          $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+          //$target_dir = "images/";
+          //$target_file = $target_dir . basename($_FILES["u_img"]["name"]);
+          //$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
           $check = getimagesize($_FILES["u_img"]["tmp_name"]);
           $upload = false;
           if ($check === true)
@@ -101,8 +102,41 @@ include 'header/header3.php';;
 
           if($form)
           {
+                if($upload)
+                {
+                    $target_dir = "userimages/";
+                    $image = rand(1,100);
+                    $target_file = $target_dir . basename($_FILES["u_img"]["name"]);  
+                    $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+                    $userinfo['u_img'] = $image .".".$imageFileType;   
+                    $result = $user->updateuser($userinfo['u_fname'], $userinfo['u_lname'], $userinfo['u_pass'], $userinfo['u_img'], $userinfo['city'], $userinfo['country'], $userinfo['userid']);
+                    if($result == "true")
+                    {
+                        $errors['form'] = "Settings Change Successfully";
+                    }
+                    else
+                    {
+                        $errors['form'] = "Error";
+                    }
+                    
+                    
+                }
+                else
+                {
+                    $user->updateuser($userinfo['u_fname'], $userinfo['u_lname'], $userinfo['u_pass'], $userinfo['u_img'], $userinfo['city'], $userinfo['country'], $userinfo['userid']);
+                    
+                    if($result == "true")
+                    {
+                        move_uploaded_file($_FILES["u_img"]["tmp_name"], $target_dir.$imgname);
+                        $errors['form'] = "Settings Change Successfully";
+                    }
+                    else
+                    {
+                        $errors['form'] = "Error";
+                    }
+                }
+                    
             
-          
 
 
           } 
@@ -112,7 +146,7 @@ include 'header/header3.php';;
 
  ?>
  <div class="row" style="padding-top: -20px;">
-<form class="form-horizontal" role="form" enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+<form class="form-horizontal" role="form" enctype="multipart/form-data" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
  
   <h1 class="page-header">Edit Profile</h1>
   <div class="row">
@@ -181,7 +215,7 @@ include 'header/header3.php';;
         <div class="form-group">
           <label class="col-md-3 control-label"></label>
           <div class="col-md-8">
-            <input class="btn btn-primary" value="Save Changes" type="button">
+            <input class="btn btn-primary" value="Save Changes" type="submit">
             <span></span>
             <input class="btn btn-default" value="Cancel" type="reset">
           </div>
