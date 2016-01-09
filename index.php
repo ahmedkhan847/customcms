@@ -1,5 +1,5 @@
 <?php
-include 'header/header.php';
+include 'header/headerh.php';
 include 'class/articles.php';
 
 $view = new Articles();
@@ -47,4 +47,4 @@ $count++;
 ?>
 </div>
 </div>
-<?php include 'footer/footer.php'; ?>
+<?php include 'footer/footerh.php'; ?>

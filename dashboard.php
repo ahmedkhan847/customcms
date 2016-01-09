@@ -9,7 +9,7 @@ if(empty($_SESSION["username"]))
 else
 {
      include 'class/users.php';
-	include 'header/header3.php';
+	include 'header/headerd.php';
 
 	$users = $_SESSION['username'];
     $user = new User();
@@ -70,4 +70,4 @@ else
 
        
 
-<?php include 'footer/footer3.php';?>
+<?php include 'footer/footerd.php';?>

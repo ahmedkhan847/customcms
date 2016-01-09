@@ -7,7 +7,7 @@ if(isset($_SESSION["username"]))
   header('Location: dashboard.php');
                     return;
 }
-include 'header/header.php';
+include 'header/headerh.php';
 include 'class/users.php';
 
 $register = new User();
@@ -246,4 +246,4 @@ else
 </form>
 
 
-<?php include 'footer/footer.php'; ?>
+<?php include 'footer/footerh.php'; ?>

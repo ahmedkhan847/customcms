@@ -8,7 +8,7 @@ if(empty($_SESSION["username"]))
 }
 
 
-	include 'header/header3.php';
+	include 'header/headerd.php';
   include 'class/articles.php';
 	$user = $_SESSION['username'];
     $articles = new Articles();
@@ -88,4 +88,4 @@ $("button").on("click", function(e) {
 });
 
 </script>
-<?php include 'footer/footer3.php';?>
+<?php include 'footer/footerd.php';?>
