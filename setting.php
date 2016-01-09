@@ -1,5 +1,5 @@
 <?php
-//error_reporting(E_ERROR | E_PARSE);
+error_reporting(E_ERROR | E_PARSE);
 session_start();
 if(empty($_SESSION["username"]))
 {
@@ -23,7 +23,7 @@ include 'header/header3.php';
     					'city' => null,
     					'country' => null,
     					'u_img' => null,);
-    $form = true;
+    $form = false;
     $errors = [
         'user_name' => null,
         'user_fname' => null,
@@ -61,7 +61,7 @@ include 'header/header3.php';
               {
                 
                 $upload = true;
-                
+                $form = true;
               if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"&& $imageFileType != "gif" ) 
               {
                 $errors['user_img'] = 'Sorry, only JPG, JPEG, PNG & GIF files are allowed.';
@@ -71,32 +71,40 @@ include 'header/header3.php';
           if($_POST['u_fname'] != $userinfo['u_fname'])
           {
             $userinfo['u_fname'] = $_POST['u_fname'];
+            $form = true;
           }
            if($_POST['u_lname'] != $userinfo['u_lname'])
           {
             $userinfo['u_lname'] = $_POST['u_lname'];
+            $form = true;
           }
           if($_POST['city'] != $userinfo['city'])
           {
             $userinfo['city'] = $_POST['city'];
+            $form = true;
           }
           if($_POST['country'] != $userinfo['country'])
           {
             $userinfo['country'] = $_POST['country'];
+            $form = true;
           }
-
-          if($_POST['psw'] != $userinfo['u_pass'])
+          if(!empty($_POST['psw']))
           {
-            if($_POST['psw'] === $_POST['cpsw'])
-            {
-              $userinfo['u_pass'] = $_POST['psw'];
-            }
-            else
-            {
-              $form = false;
-              $errors['user_psw'] = 'Password must match';
-            }
-            
+              if($_POST['psw'] != $userinfo['u_pass'])
+              {
+                if($_POST['psw'] === $_POST['cpsw'])
+                {
+                  $userinfo['u_pass'] = $_POST['psw'];
+                  $_SESSION["password"] = $_POST['psw'];
+                  $form = true;
+                }
+                else
+                {
+                  $form = false;
+                  $errors['user_psw'] = 'Password must match';
+                }
+                
+              }
           }
 
 
@@ -139,6 +147,10 @@ include 'header/header3.php';
                 }
                     
           } 
+          else
+          {
+            $errors['form'] = "You Have Made No Changes";
+          }
 
 
     }
