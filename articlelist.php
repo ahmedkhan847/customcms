@@ -8,7 +8,7 @@ if(empty($_SESSION["username"]))
 }
 
 
-	include 'header/headerd.php';
+	include 'header/header3.php';
   include 'class/articles.php';
 	$user = $_SESSION['username'];
     $articles = new Articles();
@@ -22,7 +22,7 @@ if(empty($_SESSION["username"]))
                     <div class="col-lg-10">
                         <legend><h1>Articles</h1></legend>
                           
-                        <div class="table-responsive">
+                        <div class="table-responsive" id="tablelist">
                           <table class="table">
                                 <thead>
                                   <tr>
@@ -43,7 +43,7 @@ if(empty($_SESSION["username"]))
                                                 echo "<td>".$row['article_name']."</td>";
                                                // echo "<td>".$content."</td>";
                                                 echo "<td>".$row['category_name']."</td>";
-                                                echo "<td><a target='_blank' href='articleview.php?aid=".$row['article_id']."'' class='btn btn-success'><span class='glyphicon glyphicon-folder-open'></span></a> <a target='_blank' href='articleupdate.php?aid=".$row['article_id']."' class='btn btn-success'><span class='glyphicon glyphicon-pencil'></span></a> <button class='btn btn-success'  id='delete' value='".$row['article_id']."'><span class='glyphicon glyphicon-trash'></span></button></td>";
+                                                echo "<td><a target='_blank' href='articleview.php?aid=".$row['article_id']."'' class='btn btn-success'><span class='glyphicon glyphicon-folder-open'></span></a> <a target='_blank' href='articleupdate.php?aid=".$row['article_id']."' class='btn btn-success'><span class='glyphicon glyphicon-pencil'></span></a> <button class='btn btn-success'  id='".$row['article_id']."' onclick='req(id)'><span id='delete'class='glyphicon glyphicon-trash'></span></button></td>";
                                                 echo '</tr>'; 
                                             }
                                       }
@@ -58,12 +58,11 @@ if(empty($_SESSION["username"]))
                     </div>
                 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>       
 <script type="text/javascript">
-$("button").on("click", function(e) {
-  e.preventDefault();
-  var dataString = $(this).val();
-  
+
+function req(ids)
+{
+  var dataString = ids;
 
   $.ajax({
     url: "deletearticle.php",
@@ -74,7 +73,38 @@ $("button").on("click", function(e) {
     success: function(data) {
      if(data == 'true')
      {
-        location.reload();
+
+          // Let's check if the browser supports notifications
+          if (!("Notification" in window)) {
+              alert("Deleted Success Fully");
+              $('#tablelist').load(document.URL +  ' #tablelist');
+          }
+
+          // Let's check whether notification permissions have already been granted
+          else if (Notification.permission === "granted") {
+            var options = {
+                    body: "Deleted Success Fully"
+                     }
+            // If it's okay let's create a notification
+            var notification = new Notification("Result",options);
+              $('#tablelist').load(document.URL +  ' #tablelist');
+          }
+
+          // Otherwise, we need to ask the user for permission
+          else if (Notification.permission !== 'denied') {
+            Notification.requestPermission(function (permission) {
+              // If the user accepts, let's create a notification
+              if (permission === "granted") {
+                var options = {
+                    body: "Deleted Success Fully"
+                     }
+            // If it's okay let's create a notification
+            var notification = new Notification("Result",options);
+                  $('#tablelist').load(document.URL +  ' #tablelist');
+              }
+            });
+          }
+
      }
      else
      {
@@ -85,7 +115,8 @@ $("button").on("click", function(e) {
      // alert('Error while request..');
     }
   });
-});
+}
 
-</script>
-<?php include 'footer/footerd.php';?>
+</script>      
+
+<?php include 'footer/footer3.php';?>
