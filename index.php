@@ -30,8 +30,8 @@ while($row = $result->fetch_assoc())
         <div class="panel-heading home links"><?php echo $row['article_name']; ?></div>
         <div class="panel-body"><img src="articleimage/<?php echo $row['img']; ?>" class="img-responsive img-circle" style="width:100%" alt="Image">
         	<p> <?php 
-            $aid = $row['article_id'];
-           echo $view->limit_text($row['article_content'])." "."<a href='articleview.php?aid=$aid'>read more...</a>"; 
+            $aid = $row['url'];
+           echo $view->limit_text($row['article_content'])." "."<a href='$aid'>read more...</a>"; 
 
         		//echo $row['article_content'];
         	?> </p>

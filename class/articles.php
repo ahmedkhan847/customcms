@@ -60,6 +60,25 @@ public function getarticleforupdate($aid)
 	return $sql;
 }
 
+function friendly_seo_string($vp_string){
+    
+    $vp_string = trim($vp_string);
+    
+    $vp_string = html_entity_decode($vp_string);
+    
+    $vp_string = strip_tags($vp_string);
+    
+    $vp_string = strtolower($vp_string);
+    
+    $vp_string = preg_replace('~[^ a-z0-9_.]~', ' ', $vp_string);
+    
+    $vp_string = preg_replace('~ ~', '-', $vp_string);
+    
+    $vp_string = preg_replace('~-+~', '-', $vp_string);
+        
+    return $vp_string;
+    }
+
 public function insertarticle($a_name,$a_content,$a_category,$user_name,$imgname)
 {
 	$con = $this->db->OpenCon();
@@ -67,8 +86,9 @@ public function insertarticle($a_name,$a_content,$a_category,$user_name,$imgname
 	$content = $con->real_escape_string($a_content);
 	$category = $con->real_escape_string($a_category);
 	$img = $con->real_escape_string($imgname);
-	$query = $con->prepare("INSERT INTO articles( article_name, article_content, category_id, img ) VALUES( ?, ?, ( SELECT category_id FROM categories WHERE categories.category_id = ? ), ? )");
-	$query->bind_param("ssis",$title,$content,$category,$img);
+	$url = $this->friendly_seo_string($title);
+	$query = $con->prepare("INSERT INTO articles( article_name, article_content, category_id, img, url ) VALUES( ?, ?, ( SELECT category_id FROM categories WHERE categories.category_id = ? ), ?, ?)");
+	$query->bind_param("ssiss",$title,$content,$category,$img,$url);
 	$result = $query->execute();
 	if(!$result)
 	{
@@ -96,6 +116,8 @@ public function insertarticle($a_name,$a_content,$a_category,$user_name,$imgname
 	$result = 'true';
 	return $result;
 }
+
+
 
 public function getcategories()
 {
@@ -199,7 +221,7 @@ function getarticle($articleid)
 			 ON articles.article_id = article.article_id
 			 INNER JOIN categories
 			 ON categories.category_id = articles.category_id
-			 WHERE article.article_id = $articleid";
+			 WHERE articles.url = '$articleid'";
 	
 	$result = $con->query($stmt);
 	
@@ -224,7 +246,7 @@ function viewarticles()
 {
 	$con = $this->db->OpenCon();
 	
-	$stmt = "SELECT articles.article_id,articles.article_name,articles.article_content,categories.category_name,articles.img,users.u_fname,users.u_lname,DATE_FORMAT(articles.date,'%d-%m-%Y') AS dates FROM article INNER JOIN users ON users.user_id = article.user_Id INNER JOIN articles ON articles.article_id = article.article_id INNER JOIN categories ON categories.category_id = articles.category_id ";
+	$stmt = "SELECT articles.article_id,articles.article_name,articles.article_content,articles.url,categories.category_name,articles.img,users.u_fname,users.u_lname,DATE_FORMAT(articles.date,'%d-%m-%Y') AS dates FROM article INNER JOIN users ON users.user_id = article.user_Id INNER JOIN articles ON articles.article_id = article.article_id INNER JOIN categories ON categories.category_id = articles.category_id ";
 	
 	$result = $con->query($stmt);
 	
