@@ -29,8 +29,8 @@ and open the template in the editor.
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="index.php">Home</a></li>
-        <li><a href="#">Contact Us</a></li>
+        <li class="active"><a href="index">Home</a></li>
+        <li><a href="contact">Contact Us</a></li>
       </ul>
       <?php
       if(isset($_SESSION["username"]))

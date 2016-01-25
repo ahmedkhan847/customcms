@@ -75,6 +75,9 @@ and open the template in the editor.
                     <a href="setting">User Setting</a>
                 </li>
                 <li>
+                    <a href="contact">Contact U</a>
+                </li>
+                <li>
                     <a href="logout">LogOut</a>
                 </li>
       </ul></div>
