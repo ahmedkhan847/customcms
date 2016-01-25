@@ -54,7 +54,7 @@ if($form)
   
 
   $name = $_POST['u_name'];
-  $email = "ahmedkhangaditek@gmail.com";
+  $email = $_POST['u_email'];
   $message = $_POST['u_message'];
   $subject = $_POST['u_subject'];
   $headers = "From: ahmedkhangaditek@gmail.com" . "\r\n";
@@ -100,7 +100,7 @@ bkLib.onDomLoaded(function() {
 <div class="form-group col-md-10">
   <label class="control-label" for="a_name">Name</label>  
   
-  <input id="u_name" name="u_name" type="text" placeholder="Enter Your Name" class="form-control input-md"  value="<?php if(isset($_POST['u_name'])){echo $_POST['u_name'];}  ?>" required>
+  <input id="u_name" name="u_name" type="text" placeholder="Enter Your Name" class="form-control input-md"  value="<?php if($form === false){ if(isset($_POST['u_name'])){echo $_POST['u_name'];} } ?>" required>
     <p class="text-danger"><?php echo $errors['u_name']?></p>
   
 </div>
@@ -109,7 +109,7 @@ bkLib.onDomLoaded(function() {
 <div class="form-group col-md-10">
   <label class="control-label" for="a_category">Email</label>
   
-<input id="u_email" name="u_email" type="email" placeholder="Enter Your Email" class="form-control input-md"  value="<?php if(isset($_POST['u_email'])){echo $_POST['u_email'];}  ?>" required>
+<input id="u_email" name="u_email" type="email" placeholder="Enter Your Email" class="form-control input-md"  value="<?php if($form === false){ if(isset($_POST['u_email'])){echo $_POST['u_email'];} } ?>" required>
     <p class="text-danger"><?php echo $errors['u_email']?></p>
 
 </div>
@@ -118,7 +118,7 @@ bkLib.onDomLoaded(function() {
 <div class="form-group col-md-10">
   <label class="control-label" for="article_img">Subject</label>
   
-    <input id="u_subject" name="u_subject" type="text" placeholder="Enter Your Email" class="form-control input-md"  value="<?php if(isset($_POST['u_subject'])){echo $_POST['u_subject'];}  ?>" required>
+    <input id="u_subject" name="u_subject" type="text" placeholder="Enter Your Email" class="form-control input-md"  value="<?php if($form === false){ if(isset($_POST['u_subject'])){echo $_POST['u_subject'];} } ?>" required>
      <p class="text-danger"><?php echo $errors['u_subject']?></p>
   
 </div>
@@ -127,7 +127,7 @@ bkLib.onDomLoaded(function() {
 <div class="form-group col-md-10" >
   <label class="control-label" for="article_content">Message</label>
                       
-    <textarea class="form-control" id="u_message" name="u_message" rows="13"><?php if(isset($_POST['u_message'])){echo $_POST['u_message'];}  ?></textarea>
+    <textarea class="form-control" id="u_message" name="u_message" rows="13"><?php if($form === false){ if(isset($_POST['u_message'])){echo $_POST['u_message'];} } ?></textarea>
     <p class="text-danger"><?php echo $errors['u_message'];?></p>
   
 </div>
