@@ -221,7 +221,7 @@ function getarticle($articleid)
 			 ON articles.article_id = article.article_id
 			 INNER JOIN categories
 			 ON categories.category_id = articles.category_id
-			 WHERE articles.url = '$articleid'";
+			 WHERE articles.article_id = '$articleid'";
 	
 	$result = $con->query($stmt);
 	
