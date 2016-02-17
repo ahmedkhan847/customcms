@@ -5,6 +5,12 @@ Options -Indexes
 DirectoryIndex index.php       
 order deny,allow
 
+#rewriting urls for id to make seo friendly url
+RewriteEngine On
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteRule    ^([A-Za-z0-9]+[-]+[A-Za-z0-9]+)+$  articleview.php?aid=$1    [NC,L]    # Handle product requests
+
 RewriteEngine on 
 RewriteCond %{REQUEST_FILENAME} !-d 
 RewriteCond %{REQUEST_FILENAME}\.php -f 
@@ -14,3 +20,5 @@ RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-d 
 RewriteCond %{REQUEST_FILENAME}\.html -f 
 RewriteRule ^(.*)$ $1.html
+
+

@@ -1,5 +1,5 @@
 <?php
-include 'header/headerh.php';
+include 'header/header.php';
 include 'class/articles.php';
 
 $id = $_GET['aid'];
@@ -30,8 +30,10 @@ while($row = $result->fetch_assoc())
    <?php echo $row['article_content']; ?>
   </div>
 </div>
-	<?php
+<?php
 }
-include 'footer/footerh.php';
+?>
 
+	<?php
+include 'footer/footer.php';
 ?>

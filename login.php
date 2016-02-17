@@ -7,7 +7,7 @@ if(isset($_SESSION["username"]))
   header('Location: dashboard.php');
                     return;
 }
-include 'header/headerh.php';
+include 'header/header.php';
 include 'class/users.php'; 
 $login = new user();
 $form = true;
@@ -23,12 +23,16 @@ if(!empty($_POST))
 
         if (!isset($_POST['u_name'])) 
         {
-            $errors['name'] = 'enter valid username';
+            $errors['name'] = 'Enter Valid Username';
             $form =false;
+        }elseif(strpos($_POST['u_name'],' '))
+        {
+          $errors['name'] = "Eter Valid Username";
+          $form = false;
         } 
          if (!isset($_POST['pwd'])) 
         {
-            $errors['pwd'] = 'enter valid password';
+            $errors['pwd'] = 'Enter Valid Password';
             $form =false;
         }
 
@@ -46,6 +50,7 @@ if(!empty($_POST))
                   }
                   else
                   {
+                      
                       $errors['login'] = $result;
                   }
 
@@ -88,7 +93,7 @@ else
   <label class="col-md-4 control-label" for="submit"></label>
   <div class="col-md-4">
     <button id="submit" name="submit" class="btn btn-block btn-primary btn-primary"><span class="glyphicon glyphicon-send"></span> Submit</button>
-    
+    <?php echo $errors['login']?></p>
   </div>
 </div>
 
@@ -96,4 +101,4 @@ else
 </form>
 
 
-<?php include 'footer/footerh.php'; ?> 
+<?php include 'footer/footer.php'; ?> 

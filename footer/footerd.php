@@ -1,5 +1,6 @@
 <!-- jQuery library -->
 <script src="style/js/jquery.min.js"></script>
+
 <script type="text/javascript">
 Notification.requestPermission();
 function spawnNotification(theBody,theIcon,theTitle) {

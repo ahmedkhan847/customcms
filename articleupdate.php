@@ -140,7 +140,7 @@ bkLib.onDomLoaded(function() {
 });
     </script>
 
-<form class="form-horizontal" method="post" enctype="multipart/form-data" action="">
+<form class="form-horizontal" method="post" enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 <fieldset>
 
 <!-- Form Name -->

@@ -8,7 +8,7 @@ if(empty($_SESSION["username"]))
 }
 
 
-	include 'header/header3.php';
+	include 'header/headerd.php';
   include 'class/articles.php';
 	$user = $_SESSION['username'];
     $articles = new Articles();
@@ -83,7 +83,8 @@ function req(ids)
           // Let's check whether notification permissions have already been granted
           else if (Notification.permission === "granted") {
             var options = {
-                    body: "Deleted Success Fully"
+                    body: "Deleted Success Fully",
+                    icon: "icon/del.png"
                      }
             // If it's okay let's create a notification
             var notification = new Notification("Result",options);
@@ -96,7 +97,8 @@ function req(ids)
               // If the user accepts, let's create a notification
               if (permission === "granted") {
                 var options = {
-                    body: "Deleted Success Fully"
+                    body: "Deleted Success Fully",
+                    icon: "icon/del.png"
                      }
             // If it's okay let's create a notification
             var notification = new Notification("Result",options);
@@ -119,4 +121,4 @@ function req(ids)
 
 </script>      
 
-<?php include 'footer/footer3.php';?>
+<?php include 'footer/footerd.php';?>

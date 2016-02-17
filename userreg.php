@@ -7,7 +7,7 @@ if(isset($_SESSION["username"]))
   header('Location: dashboard.php');
                     return;
 }
-include 'header/headerh.php';
+include 'header/header.php';
 include 'class/users.php';
 
 $register = new User();
@@ -39,7 +39,11 @@ if(!empty($_POST))
 	{
 		$errors['user_name'] = "Please Enter Your Username";
 		$form = false;
-	}
+	}elseif(strpos($_POST['u_name'],' '))
+  {
+    $errors['user_name'] = "Please Enter Your Username Without Space";
+    $form = false;
+  }
   if(empty($_POST['f_name']))
   {
     $errors['user_fname'] = "Please Enter Your First name";
@@ -108,27 +112,27 @@ if($form)
   $target_file = $target_dir . basename($_FILES["u_img"]["name"]);  
   $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
   $imgname = $image .".".$imageFileType;
-  $result = $register->verifyuser($user);
-  if($result)
+  $result = $register->verifyuser($user,$email);
+  if($result == "true")
   {
-    $result = $register->createuser($fname,$lname,$user,$psw,$email,$imgname,$county,$city);
-  if($result)
-  {
-    $_SESSION["username"] = $user;
-    $_SESSION["password"] = $psw;
-    move_uploaded_file($_FILES["u_img"]["tmp_name"], $target_dir.$imgname);
-              header('Location: dashboard.php');
-                   return;
-  }
-  else
-  {
-    $errors['form'] = $result;
-  }
+      $result = $register->createuser($fname,$lname,$user,$psw,$email,$imgname,$county,$city);
+      if($result == "true")
+      {
+        $_SESSION["username"] = $user;
+        $_SESSION["password"] = $psw;
+        move_uploaded_file($_FILES["u_img"]["tmp_name"], $target_dir.$imgname);
+                  header('Location: dashboard.php');
+                       return;
+      }
+      else
+      {
+        $errors['form'] = $result;
+      }
 
   }
   else
   {
-    $errors['user_name'] = 'Username Already Exist';
+    $errors['user_name'] = 'Username Or Email Already Exist';
   }
   
 }
@@ -246,4 +250,4 @@ else
 </form>
 
 
-<?php include 'footer/footerh.php'; ?>
+<?php include 'footer/footer.php'; ?>

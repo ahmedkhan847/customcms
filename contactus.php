@@ -17,37 +17,37 @@ $errors = [
     $target_file = null;
     $imageFileType = null;
 if(!empty($_POST))
-{	
-	
-	if(empty($_POST['u_name']))
-	{
-		$errors['u_name'] = "Please Enter Your Name";
-		$form = false;
-	}
+{ 
+  
+  if(empty($_POST['u_name']))
+  {
+    $errors['u_name'] = "Please Enter Your Name";
+    $form = false;
+  }
 
-	if(empty($_POST['u_email']))
-	{
-		$errors['user_email'] = "Please Enter Your email";
-		$form = false;
-	}
-	elseif(!filter_var($_POST['u_email'],FILTER_VALIDATE_EMAIL))
-	{
-		$errors['user_email'] = "Enter Valid Email";
-		$form = false;
-	}
-	
-	
-	if(empty($_POST['u_subject']))
-	{
-		$errors['u_subject'] = "Please Enter Subject";
-		$form = false;
-	}
+  if(empty($_POST['u_email']))
+  {
+    $errors['user_email'] = "Please Enter Your email";
+    $form = false;
+  }
+  elseif(!filter_var($_POST['u_email'],FILTER_VALIDATE_EMAIL))
+  {
+    $errors['user_email'] = "Enter Valid Email";
+    $form = false;
+  }
+  
+  
+  if(empty($_POST['u_subject']))
+  {
+    $errors['u_subject'] = "Please Enter Subject";
+    $form = false;
+  }
 
-	if(empty($_POST['u_message']))
-	{
-		$errors['u_message'] = "Please Enter Message";
-		$form = false;
-	}
+  if(empty($_POST['u_message']))
+  {
+    $errors['u_message'] = "Please Enter Message";
+    $form = false;
+  }
 
 if($form)
 {
@@ -59,20 +59,20 @@ if($form)
   $subject = $_POST['u_subject'];
   $headers = "From: ahmedkhangaditek@gmail.com" . "\r\n";
 
-	if ($send->mails($name,$email, $subject, $message) === true) {
-	    $errors['form'] = "Message Sent Successfully";
-	}
+  if ($send->mails($name,$email, $subject, $message) === true) {
+      $errors['form'] = "Message Sent Successfully";
+  }
   else
   {
-  	$errors['form'] = "Unable To Send Message This Time";
+    $errors['form'] = "Unable To Send Message This Time";
   }
-	
+  
 }
 
 }
 else
 {
-	//$errors['form'] = "Kindly Fill All the Fields";
+  //$errors['form'] = "Kindly Fill All the Fields";
 }
 
 
