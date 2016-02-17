@@ -13,32 +13,6 @@ class SearchElastic
 
     }
 
-    // public function __construct($conection)
-    // {
-
-    //     $this->elasticclient = Elasticsearch\ClientBuilder::create()->build();
-    //     $this->conn = $conection;
-    // }
-
-    // private function Connect()
-    // {
-    //     $servername = servername;
-    //     $dbname     = dbname;
-    //     $username   = username;
-    //     $password   = password;
-
-    //     try {
-    //         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    //         // set the PDO error mode to exception
-    //         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    //         return $conn;
-    //     } catch (PDOException $e) {
-    //         echo $sql . "<br>" . $e->getMessage();
-    //     }
-
-    // }
-
     public function InsertData($conn)
     {
         $con    = $conn;
@@ -140,9 +114,9 @@ class SearchElastic
         ];
 
         $responses = $client->delete($params);
-        
-            return true;
-        
+
+        return true;
+
     }
 
     public function Search($query)

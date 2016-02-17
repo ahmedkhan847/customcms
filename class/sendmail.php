@@ -18,10 +18,10 @@ class SendMail
     {
         $mail = $this->mails;
         $mail->isSMTP(); // Set mailer to use SMTP
-        $mail->Host       = 'secure.emailsrvr.com'; // Specify main and backup SMTP servers
+        $mail->Host       = 'smtp.example.com'; // Specify main and backup SMTP servers
         $mail->SMTPAuth   = true; // Enable SMTP authentication
-        $mail->Username   = 'ahmed.khan@cloudways.com'; // SMTP username
-        $mail->Password   = 'ahmedkhan'; // SMTP password
+        $mail->Username   = 'admin@example.com'; // SMTP username
+        $mail->Password   = 'asd'; // SMTP password
         $mail->SMTPSecure = 'ssl'; // Enable TLS encryption, `ssl` also accepted
         $mail->Port       = 465;
         $mail->addReplyTo($email, $name); // TCP port to connect to
