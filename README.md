@@ -15,7 +15,7 @@ After that <b>customcms/index.php</b>
 
 Login with 
 <br>username: ahmedkhan 
-<br>password: ahmedkhan92 
+<br>password: ahmedkhan
 
 Or register as new user to see the dashboard
 
