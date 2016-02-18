@@ -1,10 +1,10 @@
-<?php  
+<?php
 include 'header/header.php';
 include 'class/searchelastic.php';
 
 $search = new searchelastic();
-$va = $_GET['search'];
-$query = htmlspecialchars($va);
+$va     = $_GET['q'];
+$query  = htmlspecialchars($va);
 $result = $search->Search($query);
 //print_r($result);
 ?>
@@ -13,11 +13,11 @@ $result = $search->Search($query);
 
     <hgroup class="mb20">
 		<h1>Search Results</h1>
-		<h2 class="lead"><strong class="text-danger"><?php echo $result['searchfound']; ?></strong> results were found for the search for <strong class="text-danger"><?php echo $query; ?></strong></h2>								
+		<h2 class="lead"><strong class="text-danger"><?php echo $result['searchfound'];?></strong> results were found for the search for <strong class="text-danger"><?php echo $query;?></strong></h2>
 	</hgroup>
 
     <section class="col-xs-12 col-sm-6 col-md-12">
-    	<?php for($i=0;$i<$result['searchfound'];$i++){ ?>
+    	<?php for ($i = 0; $i < $result['searchfound']; $i++) {?>
 		<article class="search-result row">
 			<div class="col-xs-12 col-sm-12 col-md-3">
 				<a href="#" title="Lorem ipsum" class="thumbnail"><img src="articleimage/<?php echo $result['result'][$i]['article_img'];?>" alt="Lorem ipsum" /></a>
@@ -30,14 +30,15 @@ $result = $search->Search($query);
 				</ul>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-7 excerpet">
-				<h3><a href="<?php echo "articleview.php?aid=".$result['result'][$i]['article_url']; ?>" title=""><?php echo $result['result'][$i]['article_name'];?></a></h3>
-				<p><?php echo $search->limit_text($result['result'][$i]['article_content']);?></p>						
-                
+				<h3><a href="<?php echo $result['result'][$i]['article_url'];?>" title=""><?php echo $result['result'][$i]['article_name'];?></a></h3>
+				<p><?php echo $search->limit_text($result['result'][$i]['article_content']);?></p>
+
 			</div>
 			<span class="clearfix borda"></span>
 		</article>
-		<?php }?>
+		<?php }
+?>
 
 </section>
-</div>		
-<?php include 'footer/footer.php'; ?>
+</div>
+<?php include 'footer/footer.php';?>

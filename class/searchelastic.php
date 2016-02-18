@@ -33,7 +33,7 @@ class SearchElastic
             $params['body'][] = [
                 'article_name'    => $row['article_name'],
                 'article_content' => $row['article_content'],
-                'article_url'     => $row['article_id'],
+                'article_url'     => $row['url'],
                 'category_name'   => $row['category_name'],
                 'username'        => $row['username'],
                 'date'            => $row['dates'],
@@ -42,7 +42,8 @@ class SearchElastic
         }
         $responses = $client->bulk($params);
         print_r($responses);
-        $conn = null;
+        
+        return true;
 
     }
 
@@ -62,7 +63,7 @@ class SearchElastic
                 'body'  => [
                     'article_name'    => $row['article_name'],
                     'article_content' => $row['article_content'],
-                    'article_url'     => $row['article_id'],
+                    'article_url'     => $row['url'],
                     'category_name'   => $row['category_name'],
                     'username'        => $row['username'],
                     'date'            => $row['dates'],

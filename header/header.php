@@ -12,8 +12,8 @@ and open the template in the editor.
          <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Custom Content Management System</title>
         <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="./style/css/bootstrap.min.css">
-        <link href="./style/css/style.css" rel="stylesheet">
+        <link rel="stylesheet" href="/blog2/style/css/bootstrap.min.css">
+        <link href="/blog2/style/css/style.css" rel="stylesheet">
         
         
     </head>
@@ -35,7 +35,7 @@ and open the template in the editor.
       </ul>
       <form class="navbar-form navbar-right" role="search" method="get" action="search.php">
         <div class="form-group">
-          <input type="text" class="form-control" name="search" placeholder="Search">
+          <input type="text" class="form-control" name="q" placeholder="Search">
         </div>
         <button type="submit" class="btn btn-success">Submit</button>
       </form>

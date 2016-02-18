@@ -10,8 +10,8 @@ and open the template in the editor.
          <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Custom Content Mangement System</title>
         <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="style/css/bootstrap.min.css">
-        <link href="style/css/style.css" rel="stylesheet">
+        <link rel="stylesheet" href="/blog2/style/css/bootstrap.min.css">
+        <link href="/blog2/style/css/style.css" rel="stylesheet">
             <!-- Custom CSS -->
    
 
@@ -35,7 +35,7 @@ and open the template in the editor.
         <button type="button" class="navbar-toggle " data-toggle="collapse" data-target="#myNavbar">
         <span class="glyphicon glyphicon-menu-down"></span>
       </button>
-      <h4><a href="index">Custom CMS</a></h4>
+      <h4><a href="/blog2/">Custom CMS</a></h4>
 <div class="collapse navbar-collapse men" id="myNavbar">
       <ul class="nav nav-pills nav-stacked">
         <li>

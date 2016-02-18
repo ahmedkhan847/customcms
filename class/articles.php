@@ -5,25 +5,25 @@ include "searchelastic.php";
 class Articles
 {
 
-    protected $db = null;
+    protected $db      = null;
     protected $elastic = null;
 
     public function __construct()
     {
 
-        $this->db = new DbConnection();
+        $this->db      = new DbConnection();
         $this->elastic = new searchelastic();
 
     }
 
     public function updatearticle($a_id, $a_content, $a_name, $a_image)
     {
-        $update = $this->elastic;
-        $con = $this->db->OpenCon();
-        $title    = $con->real_escape_string($a_name);
-        $content  = $con->real_escape_string($a_content);
-        $img      = $con->real_escape_string($imgname);
-        $sql = "UPDATE articles SET article_name = '$title' , article_content = '$content', img = '$image' WHERE article_id = '$a_id'";
+        $update  = $this->elastic;
+        $con     = $this->db->OpenCon();
+        $title   = $con->real_escape_string($a_name);
+        $content = $con->real_escape_string($a_content);
+        $img     = $con->real_escape_string($imgname);
+        $sql     = "UPDATE articles SET article_name = '$title' , article_content = '$content', img = '$image' WHERE article_id = '$a_id'";
 
         $result = $con->query($sql);
         if (!$result) {
@@ -31,17 +31,12 @@ class Articles
 
             $this->db->CloseCon();
             return $error;
-        }
-        else
-        {
-            if($updat->UpdateNode($a_id, $con) === true)
-            {
+        } else {
+            if ($updat->UpdateNode($a_id, $con) === true) {
                 $this->db->CloseCon();
                 return "true";
             }
         }
-
-        
 
     }
 
@@ -81,12 +76,14 @@ class Articles
 
         $vp_string = preg_replace('~-+~', '-', $vp_string);
 
+        $vp_string .= "/";
+
         return $vp_string;
     }
 
     public function insertarticle($a_name, $a_content, $a_category, $user_name, $imgname)
     {
-        $insert = $this->elastic;
+        $insert   = $this->elastic;
         $con      = $this->db->OpenCon();
         $title    = $con->real_escape_string($a_name);
         $content  = $con->real_escape_string($a_content);
@@ -115,16 +112,13 @@ class Articles
 
             $this->db->CloseCon();
             return $error;
-        }
-        else
-        {
-            if($insert->InsertNode($id,$con) === true)
-            {
+        } else {
+            if ($insert->InsertNode($id, $con) === true) {
                 $result = 'true';
             }
         }
         $this->db->CloseCon();
-        
+
         return $result;
     }
 
@@ -147,14 +141,14 @@ class Articles
         $name = $con->real_escape_string($username);
 
         $stmt = "SELECT article.article_id, articles.article_name,articles.article_content,categories.category_name
-			 FROM users
-			 INNER JOIN article
-			 ON article.user_Id = users.user_id
-			 INNER JOIN articles
-			 ON articles.article_id = article.article_id
-			 INNER JOIN categories
-			 ON categories.category_id = articles.category_id
-			 WHERE users.user_name = '$name'";
+             FROM users
+             INNER JOIN article
+             ON article.user_Id = users.user_id
+             INNER JOIN articles
+             ON articles.article_id = article.article_id
+             INNER JOIN categories
+             ON categories.category_id = articles.category_id
+             WHERE users.user_name = '$name'";
 
         $result = $con->query($stmt);
 
@@ -190,7 +184,7 @@ class Articles
 
     public function deletearticle($id)
     {
-        $del = $this->elastic;
+        $del    = $this->elastic;
         $con    = $this->db->OpenCon();
         $sql    = "DELETE FROM articles WHERE article_id = '$id'";
         $result = $con->query($sql);
@@ -201,16 +195,11 @@ class Articles
 
             $this->db->CloseCon();
             return $error;
-        }
-        else
-        {
-            if($del->DeleteNode($id) === true)
-            {
+        } else {
+            if ($del->DeleteNode($id) === true) {
                 $result = "true";
             }
         }
-
-        
 
         return $result;
     }
@@ -220,14 +209,14 @@ class Articles
         $con = $this->db->OpenCon();
 
         $stmt = "SELECT articles.article_name,articles.article_content,categories.category_name,articles.img,users.u_fname,users.u_lname,DATE_FORMAT(articles.date,'%d %b, %Y') as dates
-			 FROM article
-			 INNER JOIN users
-			 ON users.user_id = article.user_Id
-			 INNER JOIN articles
-			 ON articles.article_id = article.article_id
-			 INNER JOIN categories
-			 ON categories.category_id = articles.category_id
-			 WHERE articles.article_id = '$articleid'";
+             FROM article
+             INNER JOIN users
+             ON users.user_id = article.user_Id
+             INNER JOIN articles
+             ON articles.article_id = article.article_id
+             INNER JOIN categories
+             ON categories.category_id = articles.category_id
+             WHERE articles.url = '$articleid'";
 
         $result = $con->query($stmt);
 
