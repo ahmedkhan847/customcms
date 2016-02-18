@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 18, 2016 at 11:39 AM
+-- Generation Time: Feb 18, 2016 at 02:16 PM
 -- Server version: 10.1.8-MariaDB
 -- PHP Version: 5.5.30
 
@@ -120,8 +120,15 @@ CREATE TABLE `comments` (
   `cemail` varchar(50) NOT NULL,
   `cweb` varchar(50) DEFAULT NULL,
   `comment` text NOT NULL,
-  `date` datetime NOT NULL
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`comment_id`, `article_id`, `cname`, `cemail`, `cweb`, `comment`, `date`) VALUES
+(4, 9, 'Ahmed Khan', 'ahmedkhan_847@hotmail.com', 'http://www.cloudways.com', 'I am Really Enjoying it a lot.', '2016-02-18 17:51:05');
 
 -- --------------------------------------------------------
 
@@ -205,7 +212,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `users`
 --
