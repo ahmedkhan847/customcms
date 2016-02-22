@@ -1,25 +1,27 @@
 <?php
-
-if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 include 'header/header.php';
 include 'class/articles.php';
 include 'class/comment.php';
-$url = null;
-if (empty($_SESSION["id"]) || $_GET['aid'] != $_SESSION["id"]) {
-    $url            = $_GET['aid'];
-    $_SESSION["id"] = $url;
+$urls = null;
+if (!empty($_GET['aid'])) {
+   // if ($_GET['aid'] != $_SESSION["id"]) {
+        $urls            = $_GET['aid'];
+        $_SESSION["id"] = $urls;
+       // echo $_SESSION["id"];
+    //}
 } else {
-    $url = $_SESSION["id"];
+    $urls = $_SESSION["id"];
+    //echo $_SESSION["id"];
 }
 
 $article = new Articles();
 $coments = new comment();
 
-$result  = $article->getarticle($url);
-$id      = $article->getid($url);
+$result  = $article->getarticle($urls);
+$id      = $article->getid($urls);
 $result2 = $coments->viewcomments($id);
-$count = $coments->countcoments($id);
-$errors = [
+$count   = $coments->countcoments($id);
+$errors  = [
     'u_name'    => null,
     'u_email'   => null,
     'u_website' => null,
@@ -64,7 +66,7 @@ if (!empty($_POST)) {
 
         $res = $coments->addcomment($id, $_POST['u_name'], $_POST['u_email'], $_POST['u_website'], $_POST['u_message']);
         if ($res === true) {
-            header("Location: $url");
+            header("Location: $urls");
             return;
 
         } else {
@@ -102,31 +104,32 @@ while ($row = $result->fetch_assoc()) {
 <div class="row">
   <div class=="col-md-8">
 <!-- Form Name -->
-<legend>Total Comments <?php  echo $count; ?></legend>
+<legend>Total Comments <?php echo $count;?></legend>
 <section class="comment-list">
 <?php
-if($count != 0){
-while ($row = $result2->fetch_assoc()) {
-    ?>
+if ($count != 0) {
+    while ($row = $result2->fetch_assoc()) {
+        ?>
             <!-- First Comment -->
           <article class="row">
             <div class="col-md-2 col-sm-2 hidden-xs">
               <figure class="thumbnail">
                 <img class="img-responsive" src="http://www.keita-gaming.com/assets/profile/default-avatar-c5d8ec086224cb6fc4e395f4ba3018c2.jpg" />
-                <figcaption class="text-center"><?php if(empty($row['cweb'])){echo $row['cname'];} else { echo "<a href='".$row['cweb']."'>".$row['cname']."</a>";} ?></figcaption>
-                <figcaption class="text-center"><time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> <?php echo $row['dates']; ?></time></figcaption>
+                <figcaption class="text-center"><?php if (empty($row['cweb'])) {echo $row['cname'];} else {echo "<a href='" . $row['cweb'] . "'>" . $row['cname'] . "</a>";}
+        ?></figcaption>
+                <figcaption class="text-center"><time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> <?php echo $row['dates'];?></time></figcaption>
               </figure>
             </div>
             <div class="col-md-10 col-sm-10">
               <div class="panel panel-default arrow left">
                 <div class="panel-body">
-                
+
                   <div class="comment-post">
                     <p>
-                      <?php echo $row['comment']; ?>
+                      <?php echo $row['comment'];?>
                     </p>
                   </div>
-                  
+
                 </div>
               </div>
             </div>
@@ -187,7 +190,7 @@ while ($row = $result2->fetch_assoc()) {
 <div class="form-group">
   <label class="col-md-4 control-label" for="submit"></label>
   <div class="col-md-4">
-    <button id="submit" name="submit" class="btn btn-info">Add Comment</button>
+    <button id="submit" name="submit" class="btn btn-info" >Add Comment</button>
   </div>
 </div>
 
