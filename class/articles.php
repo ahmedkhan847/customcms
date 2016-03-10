@@ -40,6 +40,27 @@ class Articles
 
     }
 
+    public function getid($url)
+    {
+        $con = $this->db->OpenCon();
+
+        $stmt = "SELECT article_id FROM articles WHERE url = '$url'";
+
+        $result = $con->query($stmt);
+
+        if ($result->num_rows == 1) {
+            while ($row = $result->fetch_assoc()) {
+                $sql = $row['article_id'];
+            }
+        } else {
+            $sql = "No articles";
+        }
+
+        $this->db->CloseCon();
+
+        return $sql;
+    }
+
     public function getarticleforupdate($aid)
     {
         $con = $this->db->OpenCon();
