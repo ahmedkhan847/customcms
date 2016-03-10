@@ -60,7 +60,7 @@ CREATE TABLE `articles` (
   `category_id` int(11) NOT NULL,
   `img` varchar(50) NOT NULL,
   `url` varchar(255) NOT NULL,
-  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -120,7 +120,7 @@ CREATE TABLE `comments` (
   `cemail` varchar(50) NOT NULL,
   `cweb` varchar(50) DEFAULT NULL,
   `comment` text NOT NULL,
-  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
