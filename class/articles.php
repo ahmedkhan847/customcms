@@ -261,6 +261,8 @@ class Articles
 
         $result = $con->query($stmt);
 
+
+
         if ($result->num_rows != 0) {
             $sql = $result;
         } else {
