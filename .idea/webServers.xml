@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="cbf65d66-f4ec-427f-a826-acee1f648caa" name="Server" url="http://45.32.228.116">
+        <fileTransfer host="45.32.228.116" port="22" rootFolder="/applications/yiiii2/public_html/basic" accessType="SFTP" password="dfc7dfcbdfd9dfdedfcfdfd8dff5dfd8dfdadfc0dfdadfc2dfd9dfc9dfd8dfcedfc8" username="master_rpjphscrdb">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

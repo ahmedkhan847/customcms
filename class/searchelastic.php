@@ -10,9 +10,58 @@ class SearchElastic
     {
 
         $this->elasticclient = Elasticsearch\ClientBuilder::create()->build();
-
+        
     }
 
+    public function Mapping(){
+        $params = ['index' => 'blogss'];
+        $response = $this->elasticclient->indices()->delete($params);
+        $params = [
+                    'index' => 'blogss',
+                    'body' => [
+                        'mappings' => [
+                            'article' => [
+                                'properties' => [
+                                    'id' => [
+                                        'type' => 'integer'
+                                     
+                                    ],
+                                    'article_name' => [
+                                        'type' => 'string'
+                                     
+                                    ],
+                                    'article_content' => [
+                                        'type' => 'string'
+                                     
+                                    ],
+                                    'article_url' => [
+                                        'type' => 'string'
+                                     
+                                    ],
+                                    'category_name' => [
+                                        'type' => 'string'
+                                     
+                                    ],
+                                    'username' => [
+                                        'type' => 'string'
+                                     
+                                    ],
+                                    'date' => [
+                                        'type' => 'date',
+                                        'format' => 'dd-MM-yyyy'
+                                    ],
+                                    'article_img' => [
+                                        'type' => 'string'
+                                     
+                                    ],
+                                ]
+                            ]
+                        ]
+                    ]
+                ];
+       $response = $this->elasticclient->indices()->create($params);
+       return $response;
+    }
     public function InsertData($conn)
     {
         $con    = $conn;
@@ -24,7 +73,7 @@ class SearchElastic
         while ($row = $result->fetch_assoc()) {
             $params['body'][] = array(
                 'index' => array(
-                    '_index' => 'articles',
+                    '_index' => 'blogss',
                     '_type'  => 'article',
                     '_id'    => $row['article_id'],
                 ),
@@ -57,7 +106,7 @@ class SearchElastic
 
         while ($row = $result->fetch_assoc()) {
             $params = [
-                'index' => 'articles',
+                'index' => 'blogss',
                 'type'  => 'article',
                 'id'    => $row['article_id'],
                 'body'  => [
@@ -86,7 +135,7 @@ class SearchElastic
 
         while ($row = $result->fetch_assoc()) {
             $params = [
-                'index' => 'articles',
+                'index' => 'blogss',
                 'type'  => 'article',
                 'id'    => $row['article_id'],
                 'body'  => [
@@ -109,7 +158,7 @@ class SearchElastic
     {
         $client = $this->elasticclient;
         $params = [
-            'index' => 'articles',
+            'index' => 'blogss',
             'type'  => 'article',
             'id'    => $id,
         ];
@@ -128,7 +177,7 @@ class SearchElastic
         $i = 0;
 
         $params = [
-            'index' => 'articles',
+            'index' => 'blogss',
             'type'  => 'article',
             'body'  => [
                 'query' => [
