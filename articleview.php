@@ -91,7 +91,7 @@ while ($row = $result->fetch_assoc()) {
   </div>
   <div class="panel-body">
     <div class="col-md-3 pull-right">
-    <img class='img-responsive img-rounded center' src="/blog2/articleimage/<?php echo $row['img'];?>">
+    <img class='img-responsive img-rounded center' src="/customcms/articleimage/<?php echo $row['img'];?>">
     </div>
    <?php echo $row['article_content'];?>
   </div>
