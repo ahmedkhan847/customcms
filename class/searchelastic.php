@@ -14,10 +14,10 @@ class SearchElastic
     }
 
     public function Mapping(){
-        $params = ['index' => 'blogss'];
+        $params = ['index' => 'blog'];
         $response = $this->elasticclient->indices()->delete($params);
         $params = [
-                    'index' => 'blogss',
+                    'index' => 'blog',
                     'body' => [
                         'mappings' => [
                             'article' => [
@@ -59,11 +59,12 @@ class SearchElastic
                         ]
                     ]
                 ];
-       $response = $this->elasticclient->indices()->create($params);
-       return $response;
+       $this->elasticclient->indices()->create($params);
+       
     }
     public function InsertData($conn)
     {
+        $this->Mapping();
         $con    = $conn;
         $client = $this->elasticclient;
         $stmt   = "SELECT articles.article_id,articles.article_name,articles.article_content,articles.img,articles.url,categories.category_name,CONCAT(users.u_fname,' ',users.u_lname) AS username,DATE_FORMAT(articles.date,'%d-%m-%Y') AS dates FROM article INNER JOIN users ON users.user_id = article.user_Id INNER JOIN articles ON articles.article_id = article.article_id INNER JOIN categories ON categories.category_id = articles.category_id ";
@@ -73,7 +74,7 @@ class SearchElastic
         while ($row = $result->fetch_assoc()) {
             $params['body'][] = array(
                 'index' => array(
-                    '_index' => 'blogss',
+                    '_index' => 'blog',
                     '_type'  => 'article',
                     '_id'    => $row['article_id'],
                 ),
@@ -90,7 +91,6 @@ class SearchElastic
             ];
         }
         $responses = $client->bulk($params);
-        print_r($responses);
         
         return true;
 
@@ -106,7 +106,7 @@ class SearchElastic
 
         while ($row = $result->fetch_assoc()) {
             $params = [
-                'index' => 'blogss',
+                'index' => 'blog',
                 'type'  => 'article',
                 'id'    => $row['article_id'],
                 'body'  => [
@@ -135,7 +135,7 @@ class SearchElastic
 
         while ($row = $result->fetch_assoc()) {
             $params = [
-                'index' => 'blogss',
+                'index' => 'blog',
                 'type'  => 'article',
                 'id'    => $row['article_id'],
                 'body'  => [
@@ -158,7 +158,7 @@ class SearchElastic
     {
         $client = $this->elasticclient;
         $params = [
-            'index' => 'blogss',
+            'index' => 'blog',
             'type'  => 'article',
             'id'    => $id,
         ];
@@ -177,7 +177,7 @@ class SearchElastic
         $i = 0;
 
         $params = [
-            'index' => 'blogss',
+            'index' => 'blog',
             'type'  => 'article',
             'body'  => [
                 'query' => [
@@ -196,7 +196,7 @@ class SearchElastic
             $i++;
         }
 
-        return $result;
+        return  $result;
     }
 
     public function limit_text($text)
