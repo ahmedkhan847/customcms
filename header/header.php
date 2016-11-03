@@ -12,8 +12,8 @@ and open the template in the editor.
          <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Custom Content Management System</title>
         <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="/customcms/style/css/bootstrap.min.css">
-        <link href="/customcms/style/css/style.css" rel="stylesheet">
+        <link rel="stylesheet" href="/style/css/bootstrap.min.css">
+        <link href="/style/css/style.css" rel="stylesheet">
         
         
     </head>
@@ -26,12 +26,12 @@ and open the template in the editor.
         <span class="icon-bar"></span>
         <span class="icon-bar"></span> 
       </button>
-      <a class="navbar-brand" href="/customcms/">Your HOme Page</a>
+      <a class="navbar-brand" href="/">Your HOme Page</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="/customcms/">Home</a></li>
-        <li><a href="/customcms/contactus">Contact Us</a></li>
+        <li class="active"><a href="/">Home</a></li>
+        <li><a href="/contactus">Contact Us</a></li>
       </ul>
       <form class="navbar-form navbar-right" role="search" method="get" action="/customcms/search.php">
         <div class="form-group">
@@ -52,8 +52,8 @@ and open the template in the editor.
         else
         {?>
             <ul class="nav navbar-nav navbar-right"> 
-            <li><a href="/customcms/userreg"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a href="/customcms/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            <li><a href="/userreg"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             </ul>
    <?php     }
 
