@@ -10,7 +10,7 @@ $count  = 0;
 //echo "<br>".$rows;
 ?>
   <div class="jumbotron">
-    <h1>Change in Fayyaz Application</h1>
+    <h1>Custom CMS</h1>
     <p>Bootstrap is the most popular HTML, CSS, and JS framework for developing
     responsive, mobile-first projects on the web.</p>
   </div>
