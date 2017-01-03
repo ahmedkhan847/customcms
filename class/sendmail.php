@@ -1,6 +1,5 @@
 <?php
-include 'mail/PHPMailerAutoload.php';
-
+require 'vendor/autoload.php';
 /**
  *
  */
