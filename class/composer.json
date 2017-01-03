@@ -1,0 +1,13 @@
+{
+    "name": "ahmed.khan/class",
+    "require": {
+        "elasticsearch/elasticsearch": "2",
+        "phpmailer/phpmailer": "~5.2"
+    },
+    "authors": [
+        {
+            "name": "Ahmed Khan",
+            "email": "ahmedkhan_847@hotmail.com"
+        }
+    ]
+}
