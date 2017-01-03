@@ -11,6 +11,8 @@ Change the database config file by going to
 
 <b>class/dbconfig.php</b>
 
+Run `composer install` to download required dependencies.
+
 After that <b>customcms/index.php</b>
 
 Login with 
