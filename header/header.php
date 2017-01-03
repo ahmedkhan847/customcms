@@ -10,6 +10,7 @@ and open the template in the editor.
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
          <meta name="viewport" content="width=device-width, initial-scale=1">
+         <link rel="amphtml" href="<?php echo $_GET['aid'];?>">
         <title>Custom Content Management System</title>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="/customcms/style/css/bootstrap.min.css">

@@ -60,7 +60,8 @@ if (!empty($_POST)) {
         $result      = $crud->insertarticle($articlename, $articlecont, $articlecat, $user, $imgname);
 
         if ($result == 'true') {
-            move_uploaded_file($_FILES["article_img"]["tmp_name"], $target_dir . $imgname);
+            var_dump(move_uploaded_file($_FILES["article_img"]["tmp_name"], $target_dir . $imgname));
+            die("exit");
             header('Location: articlelist.php');
             return;
         } else {

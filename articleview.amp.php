@@ -1,5 +1,5 @@
 <?php
-include 'header/header.php';
+include 'header/headeramp.php';
 include 'class/articles.php';
 include 'class/comment.php';
 $urls = null;
@@ -112,9 +112,10 @@ if ($count != 0) {
         ?>
             <!-- First Comment -->
           <article class="row">
+            <amp-img class="img-responsive" src="http://www.keita-gaming.com/assets/profile/default-avatar-c5d8ec086224cb6fc4e395f4ba3018c2.jpg" height="400" width="800"/></amp-img>
             <div class="col-md-2 col-sm-2 hidden-xs">
               <figure class="thumbnail">
-                <img class="img-responsive" src="http://www.keita-gaming.com/assets/profile/default-avatar-c5d8ec086224cb6fc4e395f4ba3018c2.jpg" />
+                
                 <figcaption class="text-center"><?php if (empty($row['cweb'])) {echo $row['cname'];} else {echo "<a href='" . $row['cweb'] . "'>" . $row['cname'] . "</a>";}
         ?></figcaption>
                 <figcaption class="text-center"><time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> <?php echo $row['dates'];?></time></figcaption>
