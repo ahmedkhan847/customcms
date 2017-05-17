@@ -1,6 +1,6 @@
-<script src="/customcms/style/js/jquery.min.js"></script>
+<script src="style/js/jquery.min.js"></script>
 <!-- Latest compiled JavaScript -->
-<script src="/customcms/style/js/bootstrap.min.js"></script>
+<script src="style/js/bootstrap.min.js"></script>
     <!-- Menu Toggle Script -->
     
 
